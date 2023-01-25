@@ -31,6 +31,12 @@ public class NecesseServerScraper : INecesseServerScraper
         {
             var necesseVersion = ParseVersionFromElement(versionElement);
             _logger.LogInformation("Version: {@Version} found", necesseVersion);
+
+            if (!necesseVersion.Url.Contains(necesseVersion.Build))
+            {
+                throw new Exception("Incorrect download url, build number different in url");
+            }
+            
             return necesseVersion;
         }
         catch (Exception e)
