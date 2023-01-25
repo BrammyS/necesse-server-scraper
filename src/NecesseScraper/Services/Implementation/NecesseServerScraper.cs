@@ -19,6 +19,8 @@ public class NecesseServerScraper : INecesseServerScraper
         _logger.LogInformation("Starting chrome headless scraper");
         var chromeOptions = new ChromeOptions();
         chromeOptions.AddArgument("--headless");
+        chromeOptions.AddArgument("--no-sandbox");
+        chromeOptions.AddArgument("--disable-dev-shm-usage");
 
         var webDriver = new ChromeDriver(chromeOptions);
         
