@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{67A79FA1-8042-4162-B824-601119F5C586}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6EFF75BD-DEA9-464B-A029-3688057B3346}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NecesseScraper", "src\NecesseScraper\NecesseScraper.csproj", "{68C815B7-B089-4D39-BCED-01192AF60752}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{68C815B7-B089-4D39-BCED-01192AF60752} = {67A79FA1-8042-4162-B824-601119F5C586}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68C815B7-B089-4D39-BCED-01192AF60752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68C815B7-B089-4D39-BCED-01192AF60752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68C815B7-B089-4D39-BCED-01192AF60752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68C815B7-B089-4D39-BCED-01192AF60752}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
