@@ -1,17 +1,23 @@
-﻿FROM mcr.microsoft.com/dotnet/runtime:7.0 AS base
+﻿# Setup base image
+FROM mcr.microsoft.com/dotnet/runtime:7.0 AS base
 WORKDIR /app
 
+# Setup build image
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
+
+# Build the application
 COPY ["src/NecesseScraper/NecesseScraper.csproj", "src/NecesseScraper/"]
 RUN dotnet restore "src/NecesseScraper/NecesseScraper.csproj"
 COPY . .
 WORKDIR "/src/src/NecesseScraper"
 RUN dotnet build "NecesseScraper.csproj" -c Release -o /app/build
 
+# Publish the application
 FROM build AS publish
 RUN dotnet publish "NecesseScraper.csproj" -c Release -o /app/publish
 
+# Setup final runtime image
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .

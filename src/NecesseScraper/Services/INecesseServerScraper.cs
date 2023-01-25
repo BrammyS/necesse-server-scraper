@@ -1,5 +1,4 @@
-﻿
-using NecesseScraper.Models;
+﻿using NecesseScraper.Models;
 
 namespace NecesseScraper.Services;
 
