@@ -1,0 +1,17 @@
+﻿version: "3.8"
+# noinspection ComposeUnknownKeys
+name: "NecesseScraper services"
+
+services:
+  necesse-scraper:
+    container_name: necesse-scraper
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      USER_SECRETS_ID: 6b77af8f-db3e-4b78-920a-e28ccc9a67bc
+    volumes:
+      - $APPDATA/Microsoft/UserSecrets/$USER_SECRETS_ID:/root/.microsoft/usersecrets/$USER_SECRETS_ID # Windows
+      #- $HOME/.microsoft/usersecrets/$USER_SECRETS_ID:/root/.microsoft/usersecrets/$USER_SECRETS_ID # Linux / Mac
+    build:
+      no_cache: true
+      context: ../
+      dockerfile: ./src/NecesseScraper/Dockerfile

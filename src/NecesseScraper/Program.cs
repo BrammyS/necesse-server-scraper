@@ -1,12 +1,21 @@
-﻿// See https://aka.ms/new-console-template for more information
-
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NecesseScraper.Persistence.MongoDB;
 using NecesseScraper.Services;
 using NecesseScraper.Services.Implementation;
 
+var configurationBuilder = new ConfigurationBuilder()
+    .AddUserSecrets<Program>()
+    .SetBasePath(Path.Combine(AppContext.BaseDirectory))
+    .AddJsonFile("appsettings.json")
+    .AddJsonFile("appsettings.Development.json", optional: true);
+
 var serviceCollection = new ServiceCollection()
-    .AddScoped<INecesseServerScraper, NecesseServerScraper>()
+    .AddMongoDb()
+    .AddSingleton<IConfiguration>(configurationBuilder.Build())
+    .AddScoped<IVersionUpdater, VersionUpdater>()
+    .AddScoped<IServerScraper, ServerScraper>()
     .AddLogging(builder =>
     {
         builder.ClearProviders();
@@ -15,5 +24,5 @@ var serviceCollection = new ServiceCollection()
 
 var services = serviceCollection.BuildServiceProvider();
 
-var scraper = services.GetRequiredService<INecesseServerScraper>();
-await scraper.GetLatestVersionAsync().ConfigureAwait(false);
+var updater = services.GetRequiredService<IVersionUpdater>();
+await updater.UpdateVersionAsync().ConfigureAwait(false);

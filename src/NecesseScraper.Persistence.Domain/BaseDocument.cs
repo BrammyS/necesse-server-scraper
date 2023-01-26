@@ -3,34 +3,20 @@
 /// <summary>
 ///     This class represents a basic document that can be stored in MongoDb.
 /// </summary>
-public class BaseDocument
+public record BaseDocument(string BsonObjectId, DateTime AddedAtUtc)
 {
     /// <summary>
     ///     Creates a new <see cref="BaseDocument" />
     /// </summary>
-    public BaseDocument()
+    protected BaseDocument() : this(string.Empty, DateTime.UtcNow)
     {
-        AddedAtUtc = DateTime.UtcNow;
-        BsonObjectId = string.Empty;
     }
 
     /// <summary>
     ///     Creates a new <see cref="BaseDocument" />
     /// </summary>
     /// <param name="bsonObjectId">The object id that will be used for the document.</param>
-    public BaseDocument(string bsonObjectId)
+    public BaseDocument(string bsonObjectId) : this(bsonObjectId, DateTime.UtcNow)
     {
-        AddedAtUtc = DateTime.UtcNow;
-        BsonObjectId = bsonObjectId;
     }
-
-    /// <summary>
-    ///     The object id of the document.
-    /// </summary>
-    public string BsonObjectId { get; set; }
-
-    /// <summary>
-    ///     The <see cref="DateTime" /> of when the <see cref="BaseDocument" /> was added to the collection.
-    /// </summary>
-    public DateTime AddedAtUtc { get; set; }
 }

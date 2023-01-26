@@ -1,8 +1,8 @@
-﻿using NecesseScraper.Models;
+﻿using NecesseScraper.Persistence.Domain.Models;
 
 namespace NecesseScraper.Services;
 
-public interface INecesseServerScraper
+public interface IServerScraper
 {
     Task<NecesseVersion> GetLatestVersionAsync();
 }

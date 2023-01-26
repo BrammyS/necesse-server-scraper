@@ -1,21 +1,21 @@
 ﻿using System.Diagnostics;
 using Microsoft.Extensions.Logging;
-using NecesseScraper.Models;
+using NecesseScraper.Persistence.Domain.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace NecesseScraper.Services.Implementation;
 
-public class NecesseServerScraper : INecesseServerScraper
+public class ServerScraper : IServerScraper
 {
-    private readonly ILogger<NecesseServerScraper> _logger;
+    private readonly ILogger<ServerScraper> _logger;
 
-    public NecesseServerScraper(ILogger<NecesseServerScraper> logger)
+    public ServerScraper(ILogger<ServerScraper> logger)
     {
         _logger = logger;
     }
 
-    public async Task<NecesseVersion> GetLatestVersionAsync()
+    public Task<NecesseVersion> GetLatestVersionAsync()
     {
         var webDriver = CreateChromeDriver();
 
@@ -37,7 +37,7 @@ public class NecesseServerScraper : INecesseServerScraper
                 throw new Exception("Incorrect download url, build number different in url");
             }
             
-            return necesseVersion;
+            return Task.FromResult(necesseVersion);
         }
         catch (Exception e)
         {

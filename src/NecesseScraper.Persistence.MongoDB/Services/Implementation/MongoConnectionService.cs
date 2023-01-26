@@ -20,6 +20,6 @@ public class MongoConnectionService : IMongoConnectionService
 
     public string GetConnectionString()
     {
-        return GetConnection().GetConnectionString();
+        return GetConnection().GetConnectionString(true);
     }
 }

@@ -13,7 +13,7 @@ public class MongoContext : BaseMongoContext
     /// <summary>
     ///     Creates a new <see cref="MongoContext" />.
     /// </summary>
-    public MongoContext(IMongoConnectionService connectionService, bool isMongoDbAtlas = false)
+    public MongoContext(IMongoConnectionService connectionService, bool isMongoDbAtlas = true)
     {
         var connection = connectionService.GetConnection();
         var connectionString = connection.GetConnectionString(isMongoDbAtlas);
