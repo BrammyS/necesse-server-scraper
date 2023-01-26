@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\NecesseScraper.Persistence.Domain\NecesseScraper.Persistence.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -12,6 +12,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NecesseScraper.Persistence.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NecesseScraper.Persistence.MongoDB", "src\NecesseScraper.Persistence.MongoDB\NecesseScraper.Persistence.MongoDB.csproj", "{EEF9408E-7370-48EC-915A-A1525F428472}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{33E0B970-AE2A-4E95-B23B-F3BC5C780791}"
+	ProjectSection(SolutionItems) = preProject
+		Solution items\Secrets.md = Solution items\Secrets.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
