@@ -248,3 +248,7 @@ _Pvt_Extensions
 /NDependOut
 /CleanArchitecture.ndproj
 update.bat
+
+src/NecesseScraper/publish_old_images.yml
+
+src/NecesseScraper/publish_images.yml

@@ -30,6 +30,19 @@ public class VersionUpdater : IVersionUpdater
         }
         
         await UpdateDatabaseAsync(latestVersion, currentVersion).ConfigureAwait(false);
+        if(currentVersion is not null)
+            await UpdateWorkflowFilesAsync(latestVersion, currentVersion).ConfigureAwait(false);
+    }
+
+    private async Task UpdateWorkflowFilesAsync(NecesseVersion latestVersion, NecesseVersion currentVersion)
+    {
+        var workFlow = await File.ReadAllTextAsync("publish_images.yml").ConfigureAwait(false);
+
+        workFlow = workFlow.Replace(currentVersion.Build, latestVersion.Build);
+        workFlow = workFlow.Replace(currentVersion.Version, latestVersion.Version);
+        workFlow = workFlow.Replace(currentVersion.Url, latestVersion.Url);
+
+        await File.WriteAllTextAsync("publish_images.yml", workFlow).ConfigureAwait(false);
     }
 
     private async Task UpdateDatabaseAsync(NecesseVersion latestVersion, NecesseVersion? currentVersion)

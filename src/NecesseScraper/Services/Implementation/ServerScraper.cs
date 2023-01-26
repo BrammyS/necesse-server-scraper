@@ -49,7 +49,7 @@ public class ServerScraper : IServerScraper
     private static NecesseVersion ParseVersionFromElement(IWebElement versionElement)
     {
         var versionData = versionElement.Text.Split(" ");
-        var version = versionData[2];
+        var version = versionData[2].Replace('.', '-').Replace("v", "");
         var build = versionData[4];
         var downloadUrl = versionElement.GetAttribute("href");
 
