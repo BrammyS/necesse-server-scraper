@@ -112,7 +112,7 @@ public interface IRepository<T> where T : BaseDocument
     /// </param>
     /// <param name="newValue">The value that will be set to the <paramref name="predicateNew" /> value.</param>
     Task UpdateValueAsync(Expression<Func<T, object>> predicateSearch, object searchValue,
-                          Expression<Func<T, object?>> predicateNew, object? newValue);
+        Expression<Func<T, object?>> predicateNew, object? newValue);
 
     /// <summary>
     ///     Update a value of a row/document in a table/collection.
@@ -135,7 +135,7 @@ public interface IRepository<T> where T : BaseDocument
     /// </param>
     /// <param name="incrementAmount">The amount that will be incremented to the new number.</param>
     Task IncrementValueAsync(string objectId, Expression<Func<T, long>> predicateIncrement,
-                             long incrementAmount = 1);
+        long incrementAmount = 1);
 
     /// <summary>
     ///     Increment a value of a row/document in a table/collection.
@@ -148,7 +148,7 @@ public interface IRepository<T> where T : BaseDocument
     /// </param>
     /// <param name="incrementAmount">The amount that will be incremented to the new number.</param>
     Task IncrementValueAsync(Expression<Func<T, object>> predicateSearch, object searchValue,
-                             Expression<Func<T, long>> predicateIncrement, long incrementAmount = 1);
+        Expression<Func<T, long>> predicateIncrement, long incrementAmount = 1);
 
     /// <summary>
     ///     Get the last documents in a collection.

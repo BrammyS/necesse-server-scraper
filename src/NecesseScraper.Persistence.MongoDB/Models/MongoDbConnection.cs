@@ -24,16 +24,10 @@ public record MongoDbConnection(
 
         var csBuilder = new StringBuilder();
         csBuilder.Append($"{(isMongoDbAtlas ? "mongodb+srv" : "mongodb")}://");
-        if (!string.IsNullOrWhiteSpace(UserName) && !string.IsNullOrWhiteSpace(Password))
-        {
-            csBuilder.Append($"{UserName}:{Password}@");
-        }
+        if (!string.IsNullOrWhiteSpace(UserName) && !string.IsNullOrWhiteSpace(Password)) csBuilder.Append($"{UserName}:{Password}@");
 
         csBuilder.Append($"{Host}");
-        if (!isMongoDbAtlas)
-        {
-            csBuilder.Append($":{Port}");
-        }
+        if (!isMongoDbAtlas) csBuilder.Append($":{Port}");
 
         csBuilder.Append($"/{Database}");
         csBuilder.Append("?retryWrites=true&w=majority&compressors=zlib,zstd&maxPoolSize=1024");

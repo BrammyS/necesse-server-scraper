@@ -6,9 +6,9 @@ namespace NecesseScraper.Services.Implementation;
 
 public class VersionUpdater : IVersionUpdater
 {
-    private readonly INecesseVersionRepository _versionRepository;
-    private readonly IServerScraper _serverScraper;
     private readonly ILogger<VersionUpdater> _logger;
+    private readonly IServerScraper _serverScraper;
+    private readonly INecesseVersionRepository _versionRepository;
 
     public VersionUpdater(INecesseVersionRepository versionRepository, IServerScraper serverScraper, ILogger<VersionUpdater> logger)
     {
@@ -16,7 +16,7 @@ public class VersionUpdater : IVersionUpdater
         _serverScraper = serverScraper;
         _logger = logger;
     }
-    
+
     public async Task UpdateVersionAsync()
     {
         var latestVersion = await _serverScraper.GetLatestVersionAsync().ConfigureAwait(false);
@@ -25,12 +25,12 @@ public class VersionUpdater : IVersionUpdater
 
         if (currentVersion is not null && latestVersion.Build == currentVersion.Build)
         {
-            _logger.LogInformation("No new version found");   
+            _logger.LogInformation("No new version found");
             return;
         }
-        
+
         await UpdateDatabaseAsync(latestVersion, currentVersion).ConfigureAwait(false);
-        if(currentVersion is not null)
+        if (currentVersion is not null)
             await UpdateWorkflowFilesAsync(latestVersion, currentVersion).ConfigureAwait(false);
     }
 

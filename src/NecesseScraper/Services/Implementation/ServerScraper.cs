@@ -32,11 +32,8 @@ public class ServerScraper : IServerScraper
             var necesseVersion = ParseVersionFromElement(versionElement);
             _logger.LogInformation("Version: {@Version} found", necesseVersion);
 
-            if (!necesseVersion.Url.Contains(necesseVersion.Build))
-            {
-                throw new Exception("Incorrect download url, build number different in url");
-            }
-            
+            if (!necesseVersion.Url.Contains(necesseVersion.Build)) throw new Exception("Incorrect download url, build number different in url");
+
             return Task.FromResult(necesseVersion);
         }
         catch (Exception e)

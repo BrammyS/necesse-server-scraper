@@ -27,9 +27,9 @@ public class BaseMongoContext
     {
         // Get all the collection configurators from the assembly
         var collectionConfigurators = Assembly.GetExecutingAssembly().GetTypes()
-                                              .Where(x => x.GetInterfaces().Contains(typeof(ICollectionConfigurator)) &&
-                                                          x.GetConstructor(Type.EmptyTypes) is not null)
-                                              .Select(x => Activator.CreateInstance(x) as ICollectionConfigurator).ToList();
+            .Where(x => x.GetInterfaces().Contains(typeof(ICollectionConfigurator)) &&
+                        x.GetConstructor(Type.EmptyTypes) is not null)
+            .Select(x => Activator.CreateInstance(x) as ICollectionConfigurator).ToList();
 
         foreach (var collectionConfigurator in collectionConfigurators)
             collectionConfigurator?.ConfigureCollection();

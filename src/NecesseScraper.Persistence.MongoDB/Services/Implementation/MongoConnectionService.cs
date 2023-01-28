@@ -11,7 +11,7 @@ public class MongoConnectionService : IMongoConnectionService
     {
         _configuration = configuration;
     }
-    
+
     public MongoDbConnection GetConnection()
     {
         var section = _configuration.GetSection("Mongodb");

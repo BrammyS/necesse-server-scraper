@@ -9,7 +9,7 @@ var configurationBuilder = new ConfigurationBuilder()
     .AddUserSecrets<Program>()
     .SetBasePath(Path.Combine(AppContext.BaseDirectory))
     .AddJsonFile("appsettings.json")
-    .AddJsonFile("appsettings.Development.json", optional: true);
+    .AddJsonFile("appsettings.Development.json", true);
 
 var serviceCollection = new ServiceCollection()
     .AddMongoDb()

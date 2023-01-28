@@ -6,10 +6,10 @@ namespace NecesseScraper.Persistence.MongoDB.UnitOfWorks;
 /// <inheritdoc />
 public class UnitOfWork : IUnitOfWork
 {
-    public INecesseVersionRepository NecesseVersions { get; }
-
     public UnitOfWork(INecesseVersionRepository necesseVersions)
     {
         NecesseVersions = necesseVersions;
     }
+
+    public INecesseVersionRepository NecesseVersions { get; }
 }

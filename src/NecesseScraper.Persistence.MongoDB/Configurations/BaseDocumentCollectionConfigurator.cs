@@ -18,9 +18,9 @@ public class BaseDocumentCollectionConfigurator : ICollectionConfigurator
             cm.AutoMap();
             cm.MapMember(c => c.AddedAtUtc).SetElementName("AddedAtUtc").SetIsRequired(true);
             cm.MapIdProperty(c => c.BsonObjectId)
-              .SetIdGenerator(StringObjectIdGenerator.Instance)
-              .SetSerializer(new StringSerializer(BsonType.ObjectId))
-              .SetIsRequired(true);
+                .SetIdGenerator(StringObjectIdGenerator.Instance)
+                .SetSerializer(new StringSerializer(BsonType.ObjectId))
+                .SetIsRequired(true);
         });
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using NecesseScraper.Persistence.Domain;
@@ -36,9 +35,9 @@ public class Repository<T> : IRepository<T> where T : BaseDocument
     public Task<List<T>> GetAllAsync(int page, int pageAmount)
     {
         return _mongoCollection.Find(FilterDefinition<T>.Empty)
-                               .Skip((page - 1) * pageAmount)
-                               .Limit(pageAmount)
-                               .ToListAsync();
+            .Skip((page - 1) * pageAmount)
+            .Limit(pageAmount)
+            .ToListAsync();
     }
 
     /// <inheritdoc />
@@ -84,7 +83,7 @@ public class Repository<T> : IRepository<T> where T : BaseDocument
 
     /// <inheritdoc />
     public Task UpdateValueAsync(Expression<Func<T, object>> predicateSearch, object searchValue,
-                                 Expression<Func<T, object?>> predicateNew, object? newValue)
+        Expression<Func<T, object?>> predicateNew, object? newValue)
     {
         var filter = Builders<T>.Filter.Eq(predicateSearch, searchValue);
         var update = Builders<T>.Update.Set(predicateNew, newValue);
@@ -101,7 +100,7 @@ public class Repository<T> : IRepository<T> where T : BaseDocument
 
     /// <inheritdoc />
     public Task IncrementValueAsync(string objectId, Expression<Func<T, long>> predicateIncrement,
-                                    long incrementAmount = 1)
+        long incrementAmount = 1)
     {
         var filter = Builders<T>.Filter.Eq(e => e.BsonObjectId, objectId);
         var update = Builders<T>.Update.Inc(predicateIncrement, incrementAmount);
@@ -110,7 +109,7 @@ public class Repository<T> : IRepository<T> where T : BaseDocument
 
     /// <inheritdoc />
     public Task IncrementValueAsync(Expression<Func<T, object>> predicateSearch, object searchValue,
-                                    Expression<Func<T, long>> predicateIncrement, long incrementAmount = 1)
+        Expression<Func<T, long>> predicateIncrement, long incrementAmount = 1)
     {
         var filter = Builders<T>.Filter.Eq(predicateSearch, searchValue);
         var update = Builders<T>.Update.Inc(predicateIncrement, incrementAmount);
@@ -121,7 +120,7 @@ public class Repository<T> : IRepository<T> where T : BaseDocument
     public async Task<List<T>> GetLastDocumentsAsync(int count)
     {
         var documents = await _mongoCollection.AsQueryable().OrderByDescending(x => x.AddedAtUtc).Take(count)
-                                              .ToListAsync().ConfigureAwait(false);
+            .ToListAsync().ConfigureAwait(false);
         return new List<T>(documents.OrderBy(x => x.AddedAtUtc));
     }
 

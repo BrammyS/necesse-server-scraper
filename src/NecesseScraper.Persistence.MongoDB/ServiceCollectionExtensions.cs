@@ -13,11 +13,11 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddMongoDb(this IServiceCollection services)
     {
         services.AddSingleton<IMongoConnectionService, MongoConnectionService>();
-        
+
         services.AddSingleton<MongoContext>();
         services.AddSingleton<IUnitOfWork, UnitOfWork>();
         services.AddSingleton<INecesseVersionRepository, NecesseVersionRepository>();
-        
+
         return services;
     }
 }
