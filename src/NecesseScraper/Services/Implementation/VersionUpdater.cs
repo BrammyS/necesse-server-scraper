@@ -38,9 +38,9 @@ public class VersionUpdater : IVersionUpdater
     {
         var workFlow = await File.ReadAllTextAsync("publish_images.yml").ConfigureAwait(false);
 
-        workFlow = workFlow.Replace(currentVersion.Build, latestVersion.Build);
-        workFlow = workFlow.Replace(currentVersion.Version, latestVersion.Version);
         workFlow = workFlow.Replace(currentVersion.Url, latestVersion.Url);
+        workFlow = workFlow.Replace(currentVersion.Version, latestVersion.Version);
+        workFlow = workFlow.Replace(currentVersion.Build, latestVersion.Build);
 
         await File.WriteAllTextAsync("publish_images.yml", workFlow).ConfigureAwait(false);
     }
