@@ -24,7 +24,7 @@ public class ServerScraper : IServerScraper
         webDriver.Navigate().GoToUrl("https://necessegame.com/server");
         _logger.LogInformation("Scraper finished after {Time:F1}ms", (Stopwatch.GetTimestamp() - startTime) / (double)Stopwatch.Frequency * 1000);
 
-        var versionElement = webDriver.FindElement(By.XPath("/html/body/div/main/div/div/div/div/div[2]/div[2]/div[1]/div/p[6]/a"));
+        var versionElement = webDriver.FindElement(By.XPath("/html/body/div[2]/div/div/div[4]/div/p[1]/a[4]"));
         _logger.LogInformation("Element found, parsing version");
 
         try
