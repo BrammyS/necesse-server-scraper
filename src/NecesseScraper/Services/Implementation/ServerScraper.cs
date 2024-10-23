@@ -57,7 +57,10 @@ public class ServerScraper : IServerScraper
     private ChromeDriver CreateChromeDriver()
     {
         _logger.LogInformation("Starting chrome headless scraper");
-        var chromeOptions = new ChromeOptions();
+        var chromeOptions = new ChromeOptions
+        {
+            AcceptInsecureCertificates = true
+        };
         chromeOptions.AddArgument("--headless");
         chromeOptions.AddArgument("--no-sandbox");
         chromeOptions.AddArgument("--disable-dev-shm-usage");
